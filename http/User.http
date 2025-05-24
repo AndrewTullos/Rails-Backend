@@ -1,0 +1,182 @@
+@url = http://localhost:8080/api/user
+
+###
+GET {{url}}/1 HTTP/1.1
+
+###
+# happy path
+GET {{url}}/all HTTP/1.1
+
+###
+# happy path
+GET {{url}}/all/New%20York HTTP/1.1
+
+###
+# happy path
+POST {{url}}
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "JoeSchmoe",
+    "email": "JoeSchmoe@Test44.com",
+    "password": "Password44!",
+    "profilePicture": null,
+    "firstName": "Joe",
+    "lastName": "Schmoe",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001"
+}
+
+###
+# happy path
+POST {{url}}
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "JohnDoe",
+    "email": "JohnDoe@Test44.com",
+    "password": "Password44!",
+    "profilePicture": null,
+    "firstName": "John",
+    "lastName": "Doe",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001"
+}
+
+###
+# unhappy path email/username taken
+POST {{url}}
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "JohnDoe",
+    "email": "JohnDoe@Test44.com",
+    "password": "Password44!",
+    "profilePicture": "testprofile1URL.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001"
+}
+
+###
+# unhappy path blank username
+POST {{url}}
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "",
+    "email": "JohnDoe@Test44.com",
+    "password": "Password44!",
+    "profilePicture": "testprofile1URL.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001"
+}
+
+###
+# unhappy path blank password
+POST {{url}}
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "testtesttest",
+    "email": "JohnDoe@Test44.com",
+    "password": "",
+    "profilePicture": "testprofile1URL.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001"
+}
+
+###
+# unhappy path password not complex
+POST {{url}}
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "JohnDoe2",
+    "email": "JohnDoe@Test44.com",
+    "password": "password",
+    "profilePicture": "testprofile1URL.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001"
+}
+
+###
+
+# happy path
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "username": "JohnDoe",
+    "password": "Password44!"
+}
+
+###
+# unhappy path
+# non existant username
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "username": "fake username",
+    "password": "password"
+}
+
+###
+# unhappy path
+# incorrect password for existing username
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "username": "JohnDoe",
+    "password": "wrong-password"
+}
+
+###
+# Update happy path
+PUT {{url}}/1
+Content-Type: application/json
+Authorization:
+
+{
+    "userId": 1,
+    "username": "JohnDoe2",
+    "email": "JohnDoe@Test44.com",
+    "password": "Password44!",
+    "profilePicture": "testprofile1URL.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001"
+}
+
+
+###
+# happy path
+DELETE {{url}}/1 HTTP/1.1
+
+
+###
+# should return empty
+GET {{url}}/1 HTTP/1.1

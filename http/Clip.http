@@ -1,0 +1,82 @@
+@url = http://localhost:8080/api/clip
+
+
+###
+GET {{url}}/user/1 HTTP/1.1
+
+###
+# happy path
+GET {{url}}/user/2 HTTP/1.1
+
+###
+# happy path user1
+POST {{url}}
+Content-Type: application/json
+
+{
+    "clipId": 1,
+    "userProfile": {
+            "userId": 1,
+            "username": "JoeSchmoe",
+            "email": "JoeSchmoe@Test44.com",
+            "password": "Password44!",
+            "profilePicture": null,
+            "firstName": "Joe",
+            "lastName": "Schmoe",
+            "city": "New York",
+            "state": "NY",
+            "postalCode": "10001",
+            "createdAt": "2025-03-22T13:05:11"
+        },
+    "mediaUrl": "https://rails-app-capstone.s3.us-west-1.amazonaws.com/2025-03-21/prod.mp4",
+    "caption": "OG Yea Right"
+}
+
+###
+# happy path user2
+POST {{url}}
+Content-Type: application/json
+
+{
+    "clipId": 2,
+    "userProfile": {
+            "userId": 2,
+            "username": "JohnDoe",
+            "email": "JohnDoe@Test44.com",
+            "password": "Password44!",
+            "profilePicture": null,
+            "firstName": "John",
+            "lastName": "Doe",
+            "city": "New York",
+            "state": "NY",
+            "postalCode": "10001",
+            "createdAt": "2025-03-22T13:05:18"
+        },
+    "mediaUrl": "https://rails-app-capstone.s3.us-west-1.amazonaws.com/2025-03-21/Tre.mp4",
+    "caption": "OG Yea Right"
+}
+
+
+###
+# happy path user2
+POST {{url}}
+Content-Type: application/json
+
+{
+    "clipId": 2,
+    "userProfile": {
+        "userId": 3,
+        "username": "SuzyQ",
+        "email": "SuzyQ@Test44.com",
+        "password": "Password44!",
+        "profilePicture": null,
+        "firstName": "Suzy",
+        "lastName": "Q",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10001"
+    },
+    "mediaUrl": "https://rails-app-capstone.s3.us-west-1.amazonaws.com/roll.mp4",
+    "caption": "Yurrrr"
+}
+
